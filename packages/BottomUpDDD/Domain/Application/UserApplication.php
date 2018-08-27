@@ -23,12 +23,10 @@ final class UserApplication
     /**
      * @param UserRepositoryInterface $userRepositroy
      */
-    public function __construct(
-        UserRepositoryInterface $userRepositroy,
-        UserService $userService
-    ) {
+    public function __construct(UserRepositoryInterface $userRepositroy)
+    {
         $this->userRepository = $userRepositroy;
-        $this->userService = $userService;
+        $this->userService = new UserService($userRepositroy);
     }
 
     /**
