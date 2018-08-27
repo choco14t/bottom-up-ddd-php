@@ -1,0 +1,35 @@
+version: '3'
+services:
+  # nginx
+  web:
+    build:
+      context: ./docker/nginx/
+      dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/html
+    ports:
+      - '80:80'
+      - '443:443'
+    links:
+      - app
+  # php
+  app:
+    build:
+      context: ./docker/php71/
+      dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/html
+    links:
+      - db
+  # DB
+  db:
+    build:
+      context: ./docker/mysql/
+      dockerfile: Dockerfile
+    volumes:
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: homestead
+      MYSQL_ROOT_PASSWORD: homestead_password
