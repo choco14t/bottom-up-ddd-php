@@ -61,6 +61,6 @@ final class UserRepository implements UserRepositoryInterface
 
     public function delete(UserId $userId)
     {
-        $this->userEloquent->remove($userId);
+        $this->userEloquent->deleteByUserId($userId);
     }
 }

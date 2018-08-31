@@ -70,7 +70,7 @@ final class UserEloquent extends BaseEloquent
      * @param User $user
      * @return void
      */
-    public function remove(UserId $userId)
+    public function deleteByUserId(UserId $userId)
     {
         static::destroy($userId->value());
     }
