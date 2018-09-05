@@ -49,9 +49,25 @@ final class UserRepository implements UserRepositoryInterface
         return $target;
     }
 
+    /**
+     * @return User[]
+     */
     public function findAll()
     {
-        $users = $this->userEloquent->all();
+        $users = $this->userEloquent
+            ->all()
+            ->map(function (UserEloquent $userEloquent) {
+                return new User(
+                    new UserName($userEloquent->user_name),
+                    new FullName(
+                        $userEloquent->first_name,
+                        $userEloquent->family_name
+                    ),
+                    new UserId($userEloquent->id)
+                );
+            })->toArray();
+
+        return $users;
     }
 
     public function save(User $user)
