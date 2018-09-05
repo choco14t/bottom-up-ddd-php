@@ -111,6 +111,9 @@ final class UserApplication
         return new UserModel($target);
     }
 
+    /**
+     * @return UserSummaryModel[]
+     */
     public function getUserList()
     {
         $users = $this->userRepository->findAll();
