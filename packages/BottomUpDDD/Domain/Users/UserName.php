@@ -18,7 +18,9 @@ final class UserName implements EquatableInterface
         }
 
         if (strlen($name) > 50) {
-            throw new InvalidArgumentException('It must be 50 characters or less.');
+            throw new InvalidArgumentException(
+                'It must be 50 characters or less.'
+            );
         }
 
         $this->name = $name;

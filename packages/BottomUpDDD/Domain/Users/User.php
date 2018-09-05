@@ -17,8 +17,11 @@ final class User implements EquatableInterface
     /** @var FullName */
     private $fullName;
 
-    public function __construct(UserName $userName, FullName $fullName, UserId $id = null)
-    {
+    public function __construct(
+        UserName $userName,
+        FullName $fullName,
+        UserId $id = null
+    ) {
         $this->id = $id === null ? new UserId(Util::guid()) : $id;
         $this->userName = $userName;
         $this->fullName = $fullName;

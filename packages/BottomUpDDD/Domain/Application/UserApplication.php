@@ -35,8 +35,11 @@ final class UserApplication
      * @param string $familyName
      * @return void
      */
-    public function registerUser(string $userName, string $firstName, string $familyName): void
-    {
+    public function registerUser(
+        string $userName,
+        string $firstName,
+        string $familyName
+    ): void {
         $user = new User(
             new UserName($userName),
             new FullName($firstName, $familyName)
