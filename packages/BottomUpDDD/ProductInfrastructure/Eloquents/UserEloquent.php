@@ -18,6 +18,8 @@ final class UserEloquent extends BaseEloquent
 {
     public $timestamps = false;
 
+    public $incrementing = false;
+
     protected $table = 'users';
 
     protected $fillable = [
