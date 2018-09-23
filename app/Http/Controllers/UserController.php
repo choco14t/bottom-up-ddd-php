@@ -80,4 +80,22 @@ class UserController extends Controller
         );
         return redirect('/');
     }
+
+    public function delete(string $id)
+    {
+        $user = $this->userApplication->getUserInfo($id);
+        $model = new UserDetailViewModel(
+            $user->id(),
+            $user->userName(),
+            $user->name()->firstName(),
+            $user->name()->familyName()
+        );
+        return view('user.delete', ['user' => $model]);
+    }
+
+    public function destroy(string $id)
+    {
+        $this->userApplication->deleteUser($id);
+        return redirect('/');
+    }
 }
