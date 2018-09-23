@@ -38,6 +38,9 @@ final class UserModel
         return $this->userName;
     }
 
+    /**
+     * @return FullNameModel
+     */
     public function name(): FullNameModel
     {
         return $this->name;
