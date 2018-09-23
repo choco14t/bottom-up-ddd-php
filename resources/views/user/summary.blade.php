@@ -22,6 +22,7 @@
                                     <td class="text-center">{{ $user->userName }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('detail', ['id' => $user->id]) }}" class="btn btn-info">Detail</a>
+                                        <a href="{{ route('edit', ['id' => $user->id]) }}" class="btn btn-primary">Edit</a>
                                         <a class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
