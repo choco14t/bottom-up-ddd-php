@@ -35,14 +35,14 @@ final class UserEloquent extends BaseEloquent
      */
     public function findByUserName(UserName $userName)
     {
-        /** @var \Illuminate\Database\Eloquent\Collection */
+        /** @var \Illuminate\Database\Eloquent\Collection $target */
         $target = static::whereUserName($userName->value())->get();
 
         if ($target->isEmpty()) {
             return null;
         }
 
-        /** @var static */
+        /** @var self $user */
         $user = $target->first();
 
         return new User(
@@ -69,7 +69,7 @@ final class UserEloquent extends BaseEloquent
     }
 
     /**
-     * @param User $user
+     * @param UserId $user
      * @return void
      */
     public function deleteByUserId(UserId $userId)
