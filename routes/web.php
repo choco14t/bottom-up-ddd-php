@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'UserController@index');
+Route::get('/user/{id}', 'UserController@show')->name('detail');
