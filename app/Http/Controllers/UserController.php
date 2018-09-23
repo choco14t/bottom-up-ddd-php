@@ -8,6 +8,7 @@ use BottomUpDDD\WebApplication\ViewModel\UserSummaryViewModel;
 use BottomUpDDD\Domain\Application\Models\UserSummaryModel;
 use BottomUpDDD\WebApplication\ViewModel\UserDetailViewModel;
 use BottomUpDDD\WebApplication\ViewModel\EditUserViewModel;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -52,7 +53,7 @@ class UserController extends Controller
         return view('user.edit', ['user' => $model]);
     }
 
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, string $id)
     {
         $input = $request->all();
         $this->userApplication->changeUserInfo(
@@ -62,5 +63,21 @@ class UserController extends Controller
             $input['familyName']
         );
         return redirect()->route('detail', ['id' => $id]);
+    }
+
+    public function create()
+    {
+        return view('user.new');
+    }
+
+    public function store(UserRequest $request)
+    {
+        $input = $request->all();
+        $this->userApplication->registerUser(
+            $input['userName'],
+            $input['firstName'],
+            $input['familyName']
+        );
+        return redirect('/');
     }
 }

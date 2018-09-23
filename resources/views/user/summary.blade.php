@@ -4,6 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="mb-3">
+                <a href="{{ route('new') }}" class="btn btn-primary">New User</a>
+            </div>
             <div class="card">
                 <div class="card-header">Users</div>
 
