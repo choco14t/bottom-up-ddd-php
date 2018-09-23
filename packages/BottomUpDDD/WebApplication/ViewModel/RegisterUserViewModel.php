@@ -2,7 +2,7 @@
 
 namespace BottomUpDDD\WebApplication\ViewModel;
 
-class UserDetailViewModel
+class RegisterUserViewModel
 {
     /** @var string */
     public $userName;

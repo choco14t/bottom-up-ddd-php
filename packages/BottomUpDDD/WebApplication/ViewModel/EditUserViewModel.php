@@ -2,7 +2,7 @@
 
 namespace BottomUpDDD\WebApplication\ViewModel;
 
-class UserDetailViewModel
+class EditUserViewModel
 {
     /** @var string */
     public $id;

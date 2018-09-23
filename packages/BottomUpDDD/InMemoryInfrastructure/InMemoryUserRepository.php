@@ -12,6 +12,10 @@ final class InMemoryUserRepository implements UserRepositoryInterface
     /** @var User[] */
     private $data = [];
 
+    /**
+     * @param UserId $userId
+     * @return User|null
+     */
     public function findByUserId(UserId $userId)
     {
         $id = $userId->value();
@@ -23,6 +27,10 @@ final class InMemoryUserRepository implements UserRepositoryInterface
         return null;
     }
 
+    /**
+     * @param UserName $userName
+     * @return User|null
+     */
     public function findByUserName(UserName $userName)
     {
         foreach ($this->data as $user) {
@@ -34,16 +42,27 @@ final class InMemoryUserRepository implements UserRepositoryInterface
         return null;
     }
 
+    /**
+     * @return User[]
+     */
     public function findAll()
     {
-        return array_values($data);
+        return array_values($this->data);
     }
 
+    /**
+     * @param User $user
+     * @return void
+     */
     public function save(User $user)
     {
         $this->data[$user->id()->value()] = $user;
     }
 
+    /**
+     * @param UserId $userId
+     * @return void
+     */
     public function delete(UserId $userId)
     {
         unset($this->data[$userId->value()]);

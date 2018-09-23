@@ -38,4 +38,15 @@ class UserApplicationRegisterUserTest extends TestCase
 
         $this->assertTrue($registered);
     }
+
+    public function testRegister()
+    {
+        $repository = new InMemoryUserRepository();
+        $app = new UserApplication($repository);
+        $app->registerUser('ttaro', 'taro', 'tanaka');
+
+        $user = $repository->findByUserName(new UserName('ttaro'));
+        $this->assertNotNull($user);
+        $this->assertFalse($user->id()->value() === '1');
+    }
 }
