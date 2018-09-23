@@ -47,7 +47,7 @@ final class InMemoryUserRepository implements UserRepositoryInterface
      */
     public function findAll()
     {
-        return array_values($data);
+        return array_values($this->data);
     }
 
     /**
