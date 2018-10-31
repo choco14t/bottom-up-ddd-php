@@ -14,9 +14,7 @@ use BottomUpDDD\Domain\Application\UserApplication;
 class UserApplicationRegisterUserTest extends TestCase
 {
     /**
-     * A basic test example.
-     *
-     * @return void
+     * @expectedException Exception
      */
     public function testDuplicateFail()
     {
@@ -28,15 +26,7 @@ class UserApplicationRegisterUserTest extends TestCase
         $app = new UserApplication($repository);
         $registered = false;
 
-        try {
-            $app->registerUser('ttaro', 'taro', 'tanaka');
-        } catch (\Exception $e) {
-            if (strpos($e->getMessage(), 'Duplicate') >= 0) {
-                $registered = true;
-            }
-        }
-
-        $this->assertTrue($registered);
+        $app->registerUser('ttaro', 'taro', 'tanaka');
     }
 
     public function testRegister()
