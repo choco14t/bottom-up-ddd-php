@@ -83,8 +83,12 @@ final class User implements EquatableInterface
      */
     public function equals(EquatableInterface $obj): bool
     {
-        if (Util::classEquals($this, $obj) === false) {
+        if ($obj === null || Util::classEquals($this, $obj) === false) {
             return false;
+        }
+
+        if ($this === $obj) {
+            return true;
         }
 
         return $this->id->equals($obj->id());
