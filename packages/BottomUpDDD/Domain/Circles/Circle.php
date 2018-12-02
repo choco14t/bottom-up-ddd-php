@@ -5,6 +5,7 @@ namespace BottomUpDDD\Domain\Circles;
 use Exception;
 use BottomUpDDD\Domain\EquatableInterface;
 use BottomUpDDD\Domain\Users\User;
+use BottomUpDDD\Common\Util;
 
 class Circle implements EquatableInterface
 {
@@ -48,8 +49,27 @@ class Circle implements EquatableInterface
         $this->users[] = $user->id();
     }
 
-    public function notify(): void
+    /**
+     * @param CircleNotificationInterface $note
+     * @return void
+     */
+    public function notify(CircleNotificationInterface $note): void
     {
-        // code
+        $note->id($this->id);
+        $note->name($this->name);
+        $note->users($this->users);
+    }
+
+    /**
+     * @param Circle|EquatableInterface $obj
+     * @return boolean
+     */
+    public function equals(EquatableInterface $obj): bool
+    {
+        if (Util::classEquals($this, $obj) === false) {
+            return false;
+        }
+
+        return $this->id->equals($obj->id());
     }
 }
