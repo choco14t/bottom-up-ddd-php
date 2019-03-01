@@ -10,6 +10,4 @@ RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer && \
     chmod 777 /usr/local/bin/composer
 
-ADD ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
-
 WORKDIR /var/www/html
