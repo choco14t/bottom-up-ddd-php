@@ -40,6 +40,7 @@ class UserApplication
      * @param string $firstName
      * @param string $familyName
      * @return void
+     * @throws \Throwable
      */
     public function registerUser(
         string $userName,
@@ -70,6 +71,7 @@ class UserApplication
      * @param string $firstName
      * @param string $familyName
      * @return void
+     * @throws \Throwable
      */
     public function changeUserInfo(
         string $id,
@@ -100,6 +102,7 @@ class UserApplication
     /**
      * @param string $id
      * @return void
+     * @throws \Throwable
      */
     public function deleteUser(string $id): void
     {

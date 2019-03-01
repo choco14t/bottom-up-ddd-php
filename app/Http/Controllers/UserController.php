@@ -128,6 +128,7 @@ class UserController extends Controller
     /**
      * @param string $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Throwable
      */
     public function destroy(string $id)
     {
