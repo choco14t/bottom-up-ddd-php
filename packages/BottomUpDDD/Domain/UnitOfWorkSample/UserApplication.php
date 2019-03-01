@@ -111,7 +111,7 @@ class UserApplication
                 throw new Exception('not found. target id:' . $id);
             }
 
-            $this->uow->userRepository()->delete($target);
+            $this->uow->userRepository()->delete($targetId);
             $this->uow->commit();
         } catch (\Throwable $th) {
             $this->uow->rollback();
