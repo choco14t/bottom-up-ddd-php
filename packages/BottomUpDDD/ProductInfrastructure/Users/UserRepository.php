@@ -9,11 +9,19 @@ use BottomUpDDD\Domain\Users\UserName;
 use BottomUpDDD\ProductionInfrastructure\Eloquents\UserEloquent;
 use BottomUpDDD\Domain\Users\FullName;
 
+/**
+ * Class UserRepository
+ * @package BottomUpDDD\ProductionInfrastructure
+ */
 final class UserRepository implements UserRepositoryInterface
 {
     /** @var UserEloquent */
     private $userEloquent;
 
+    /**
+     * UserRepository constructor.
+     * @param UserEloquent $userEloquent
+     */
     public function __construct(UserEloquent $userEloquent)
     {
         $this->userEloquent = $userEloquent;
@@ -23,7 +31,7 @@ final class UserRepository implements UserRepositoryInterface
      * @param UserId $userId
      * @return User|null
      */
-    public function findByUserId(UserId $userId)
+    public function findByUserId(UserId $userId): ?User
     {
         $target = $this->userEloquent->find($userId->value());
 
@@ -42,7 +50,7 @@ final class UserRepository implements UserRepositoryInterface
      * @param UserName $userName
      * @return User|null
      */
-    public function findByUserName(UserName $userName)
+    public function findByUserName(UserName $userName): ?User
     {
         $target = $this->userEloquent->findByUserName($userName);
 
@@ -70,11 +78,17 @@ final class UserRepository implements UserRepositoryInterface
         return $users;
     }
 
+    /**
+     * @param User $user
+     */
     public function save(User $user)
     {
         $this->userEloquent->persist($user);
     }
 
+    /**
+     * @param UserId $userId
+     */
     public function delete(UserId $userId)
     {
         $this->userEloquent->deleteByUserId($userId);
