@@ -8,13 +8,13 @@ interface UserRepositoryInterface
      * @param UserId $userId
      * @return User|null
      */
-    public function findByUserId(UserId $userId);
+    public function findByUserId(UserId $userId): ?User;
 
     /**
      * @param UserName $userName
      * @return User|null
      */
-    public function findByUserName(UserName $userName);
+    public function findByUserName(UserName $userName): ?User;
 
     /**
      * @return User[]

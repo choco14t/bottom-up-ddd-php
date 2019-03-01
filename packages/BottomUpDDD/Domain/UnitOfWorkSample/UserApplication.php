@@ -2,6 +2,7 @@
 
 namespace BottomUpDDD\Domain\UnitOfWorkSample;
 
+use Exception;
 use BottomUpDDD\Domain\Users\UserFactoryInterface;
 use BottomUpDDD\Domain\Users\UserService;
 use BottomUpDDD\Domain\Users\UserName;

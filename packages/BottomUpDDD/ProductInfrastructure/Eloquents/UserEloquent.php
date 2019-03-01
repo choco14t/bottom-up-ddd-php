@@ -69,7 +69,7 @@ final class UserEloquent extends BaseEloquent
     }
 
     /**
-     * @param UserId $user
+     * @param UserId $userId
      * @return void
      */
     public function deleteByUserId(UserId $userId)
