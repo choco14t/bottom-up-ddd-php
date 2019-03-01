@@ -16,12 +16,12 @@ final class InMemoryUserRepository implements UserRepositoryInterface
      * @param UserId $userId
      * @return User|null
      */
-    public function findByUserId(UserId $userId)
+    public function findByUserId(UserId $userId): ?User
     {
         $id = $userId->value();
 
-        if (array_key_exists($id, $data)) {
-            return $data[$id];
+        if (array_key_exists($id, $this->data)) {
+            return $this->data[$id];
         }
 
         return null;
@@ -31,7 +31,7 @@ final class InMemoryUserRepository implements UserRepositoryInterface
      * @param UserName $userName
      * @return User|null
      */
-    public function findByUserName(UserName $userName)
+    public function findByUserName(UserName $userName): ?User
     {
         foreach ($this->data as $user) {
             if ($user->userName()->equals($userName)) {

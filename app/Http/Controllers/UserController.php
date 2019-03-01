@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use BottomUpDDD\Domain\Application\UserApplication;
+use BottomUpDDD\Domain\UnitOfWorkSample\UserApplication;
 use BottomUpDDD\WebApplication\ViewModel\UserSummaryViewModel;
 use BottomUpDDD\Domain\Application\Models\UserSummaryModel;
 use BottomUpDDD\WebApplication\ViewModel\UserDetailViewModel;
@@ -15,11 +14,18 @@ class UserController extends Controller
     /** @var UserApplication */
     private $userApplication;
 
+    /**
+     * UserController constructor.
+     * @param UserApplication $userApplication
+     */
     public function __construct(UserApplication $userApplication)
     {
         $this->userApplication = $userApplication;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $users = $this->userApplication->getUserList();
@@ -29,6 +35,10 @@ class UserController extends Controller
         return view('user.summary', ['summary' => $summary]);
     }
 
+    /**
+     * @param string $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(string $id)
     {
         $user = $this->userApplication->getUserInfo($id);
@@ -41,6 +51,10 @@ class UserController extends Controller
         return view('user.detail', ['user' => $model]);
     }
 
+    /**
+     * @param string $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit(string $id)
     {
         $user = $this->userApplication->getUserInfo($id);
@@ -53,6 +67,12 @@ class UserController extends Controller
         return view('user.edit', ['user' => $model]);
     }
 
+    /**
+     * @param UserRequest $request
+     * @param string $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Throwable
+     */
     public function update(UserRequest $request, string $id)
     {
         $input = $request->all();
@@ -65,11 +85,19 @@ class UserController extends Controller
         return redirect()->route('detail', ['id' => $id]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         return view('user.new');
     }
 
+    /**
+     * @param UserRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Throwable
+     */
     public function store(UserRequest $request)
     {
         $input = $request->all();
@@ -81,6 +109,10 @@ class UserController extends Controller
         return redirect('/');
     }
 
+    /**
+     * @param string $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function delete(string $id)
     {
         $user = $this->userApplication->getUserInfo($id);
@@ -93,6 +125,11 @@ class UserController extends Controller
         return view('user.delete', ['user' => $model]);
     }
 
+    /**
+     * @param string $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Throwable
+     */
     public function destroy(string $id)
     {
         $this->userApplication->deleteUser($id);
