@@ -101,7 +101,7 @@ class UserApplication
      * @param string $id
      * @return void
      */
-    public function removeUser(string $id): void
+    public function deleteUser(string $id): void
     {
         try {
             $targetId = new UserId($id);
