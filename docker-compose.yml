@@ -15,11 +15,11 @@ services:
   # php
   app:
     build:
-      context: ./docker/php71/
+      context: docker/app/
       dockerfile: Dockerfile
     volumes:
       - .:/var/www/html
-      - ./docker/php71/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/app/php.ini:/usr/local/etc/php/php.ini
     links:
       - db
   # DB
@@ -36,10 +36,10 @@ services:
       MYSQL_ROOT_PASSWORD: homestead_password
   php-cli:
     build:
-      context: ./docker/php71/
+      context: docker/app/
       dockerfile: Dockerfile
     volumes:
       - .:/var/www/html
-      - ./docker/php71/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/app/php.ini:/usr/local/etc/php/php.ini
     links:
       - db
